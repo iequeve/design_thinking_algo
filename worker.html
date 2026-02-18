@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Lavoratore • Security Poll</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- WORKER LOGIN SELECTOR -->
+  <div id="worker-login" class="modal-overlay">
+    <div class="modal-card">
+      <h2>Seleziona il tuo profilo</h2>
+      <p>Accedi come lavoratore</p>
+      <div class="worker-list">
+        <button class="worker-login-btn" onclick="selectWorker('Alice')">
+          <span class="worker-avatar">👨</span>
+          <span>Alice</span>
+        </button>
+        <button class="worker-login-btn" onclick="selectWorker('Bob')">
+          <span class="worker-avatar">👨</span>
+          <span>Bob</span>
+        </button>
+        <button class="worker-login-btn" onclick="selectWorker('Carlo')">
+          <span class="worker-avatar">👨</span>
+          <span>Carlo</span>
+        </button>
+        <button class="worker-login-btn" onclick="selectWorker('Diana')">
+          <span class="worker-avatar">👩</span>
+          <span>Diana</span>
+        </button>
+        <button class="worker-login-btn" onclick="selectWorker('Emilio')">
+          <span class="worker-avatar">👨</span>
+          <span>Emilio</span>
+        </button>
+      </div>
+      <button class="btn-secondary" onclick="goBackHome()" style="margin-top: 1.5rem; width: 100%;">Indietro</button>
+    </div>
+  </div>
+
+  <!-- WORKER VIEW -->
+  <div id="worker-page" class="page">
+    <header class="modern-header">
+      <div class="header-content">
+        <div class="header-brand">
+          <img src="images/Logo_ITS_Academy_Udine_25-610x610-removebg-preview.png" alt="Safety by Technology" class="header-logo">
+          <div>
+            <h1>Security Poll</h1>
+            <p>placeholder</p>
+          </div>
+        </div>
+        <img src="images/LOGO-ITS-ACADEMY-UDINE-1024x233.webp" alt="Smart Automation" class="header-center-logo">
+        <button class="logout-btn" onclick="logout()">Esci</button>
+      </div>
+    </header>
+
+    <main class="modern-container">
+      <div class="worker-layout">
+        <!-- Form Section -->
+        <section class="form-section">
+          <div class="form-header">
+            <h2>Valutazione giornaliera</h2>
+            <button type="button" class="toggle-placeholder-btn" onclick="togglePlaceholderMode()">
+              <span class="toggle-icon">📊</span> Demo Data
+            </button>
+          </div>
+          <form id="worker-form">
+            <div class="form-group">
+              <label>Lavoratore</label>
+              <input type="text" name="worker" id="worker-name-display" readonly style="background-color: #f0f0f0; cursor: not-allowed;">
+            </div>
+            <div class="form-group">
+              <label>Data della valutazione</label>
+              <input type="date" name="worker-date" required>
+            </div>
+
+            <div class="form-section-title">Come ti senti oggi?</div>
+            <div class="slider-grid">
+              <div class="slider-item">
+                <label>Affaticamento</label>
+                <div class="input-slider-group">
+                  <input type="number" min="0" max="1" step="0.05" value="0.3" class="slider-input" data-slider-name="affaticamento">
+                  <input type="range" min="0" max="1" step="0.05" value="0.3" name="affaticamento" class="slider-range">
+                  <span class="value">0.3</span>
+                </div>
+              </div>
+              <div class="slider-item">
+                <label>Concentrazione</label>
+                <div class="input-slider-group">
+                  <input type="number" min="0" max="1" step="0.05" value="0.8" class="slider-input" data-slider-name="concentrazione">
+                  <input type="range" min="0" max="1" step="0.05" value="0.8" name="concentrazione" class="slider-range">
+                  <span class="value">0.8</span>
+                </div>
+              </div>
+              <div class="slider-item">
+                <label>Carico percepito</label>
+                <div class="input-slider-group">
+                  <input type="number" min="0" max="1" step="0.05" value="0.4" class="slider-input" data-slider-name="carico">
+                  <input type="range" min="0" max="1" step="0.05" value="0.4" name="carico" class="slider-range">
+                  <span class="value">0.4</span>
+                </div>
+              </div>
+              <div class="slider-item">
+                <label>Stanchezza</label>
+                <div class="input-slider-group">
+                  <input type="number" min="0" max="1" step="0.05" value="0.3" class="slider-input" data-slider-name="stanchezza">
+                  <input type="range" min="0" max="1" step="0.05" value="0.3" name="stanchezza" class="slider-range">
+                  <span class="value">0.3</span>
+                </div>
+              </div>
+              <div class="slider-item">
+                <label>Chiarezza istruzioni</label>
+                <div class="input-slider-group">
+                  <input type="number" min="0" max="1" step="0.05" value="0.9" class="slider-input" data-slider-name="chiarezza">
+                  <input type="range" min="0" max="1" step="0.05" value="0.9" name="chiarezza" class="slider-range">
+                  <span class="value">0.9</span>
+                </div>
+              </div>
+            </div>
+
+            <button type="button" class="btn-primary-large" onclick="workerSubmit()">Invia Valutazione</button>
+          </form>
+        </section>
+
+        <!-- Results & Chart Section -->
+        <section class="results-section">
+          <div class="result-card">
+            <div class="iro-display">
+              <div class="iro-value" id="worker-iro">—</div>
+              <div class="iro-label">IRO Score</div>
+            </div>
+            <div class="risk-info">
+              <div class="risk-level" id="worker-level">—</div>
+              <div class="risk-color-bar" id="worker-color-bar"></div>
+            </div>
+          </div>
+
+          <div class="suggestions-card">
+            <h3>Raccomandazioni</h3>
+            <ul id="worker-suggestions"></ul>
+          </div>
+
+          <div class="chart-card">
+            <h3>Il tuo andamento</h3>
+            <canvas id="worker-chart"></canvas>
+          </div>
+        </section>
+      </div>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

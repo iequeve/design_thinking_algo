@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Organizzazione • Safety by Technology</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- ORGANIZATION VIEW -->
+  <div id="org-page" class="page">
+    <header class="modern-header org-header">
+      <div class="header-content">
+        <div class="header-brand">
+          <img src="images/Logo_ITS_Academy_Udine_25-610x610-removebg-preview.png" alt="Organizzazione" class="header-logo">
+          <div>
+            <h1>Organizzazione - Dashboard Completa</h1>
+            <p>Monitoraggio e gestione aziendale</p>
+          </div>
+        </div>
+        <img src="images/LOGO-ITS-ACADEMY-UDINE-1024x233.webp" alt="Smart Automation" class="header-center-logo">
+        <button class="logout-btn" onclick="logout()">Esci</button>
+      </div>
+    </header>
+
+    <main class="modern-container">
+      <div class="org-grid">
+        <!-- Left: Dashboard Overview -->
+        <section class="org-section overview-section">
+          <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem;">
+            <h2 style="margin-bottom: 0;">Panoramica</h2>
+            <button type="button" class="toggle-placeholder-btn" onclick="togglePlaceholderMode()">
+              <span class="toggle-icon">📊</span> Demo Data
+            </button>
+          </div>
+          
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-label">Totale Submission</div>
+              <div class="stat-value" id="org-total-submissions">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Lavoratori Unici</div>
+              <div class="stat-value" id="org-unique-workers">0</div>
+            </div>
+            <div class="stat-card">
+              <div class="stat-label">Avg IRO</div>
+              <div class="stat-value" id="org-avg-iro">0.0</div>
+            </div>
+          </div>
+
+          <div class="chart-card">
+            <h3>Andamento mensile IRO</h3>
+            <canvas id="org-main-chart"></canvas>
+          </div>
+        </section>
+
+        <!-- Right: Edit & Workers -->
+        <section class="org-section edit-section">
+          <div class="edit-org-card">
+            <h3>Modifica dati organizzativi</h3>
+            <form id="org-edit-form">
+              <div class="form-group">
+                <label>Seleziona la data</label>
+                <input type="date" id="org-date" required>
+              </div>
+
+              <div class="form-section-title">Dati Organizzativi</div>
+              <div class="slider-grid">
+                <div class="slider-item">
+                  <label>Ore lavorate</label>
+                  <div class="input-slider-group">
+                    <input type="number" min="6" max="12" step="0.1" value="8" class="slider-input" data-slider-name="ore">
+                    <input type="range" min="6" max="12" step="0.1" value="8" name="ore" class="slider-range">
+                    <span class="value">8</span>
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <label>Turni consecutivi</label>
+                  <div class="input-slider-group">
+                    <input type="number" min="1" max="6" step="1" value="2" class="slider-input" data-slider-name="turni">
+                    <input type="range" min="1" max="6" step="1" value="2" name="turni" class="slider-range">
+                    <span class="value">2</span>
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <label>Straordinari</label>
+                  <div class="input-slider-group">
+                    <input type="number" min="0" max="10" step="0.5" value="2" class="slider-input" data-slider-name="straordinari">
+                    <input type="range" min="0" max="10" step="0.5" value="2" name="straordinari" class="slider-range">
+                    <span class="value">2</span>
+                  </div>
+                </div>
+                <div class="slider-item">
+                  <label>Minuti pausa</label>
+                  <div class="input-slider-group">
+                    <input type="number" min="10" max="60" step="5" value="30" class="slider-input" data-slider-name="pause">
+                    <input type="range" min="10" max="60" step="5" value="30" name="pause" class="slider-range">
+                    <span class="value">30</span>
+                  </div>
+                </div>
+              </div>
+
+              <button type="button" class="btn-primary-large" onclick="orgSubmit()">Aggiorna Dati</button>
+            </form>
+            <div id="org-message" class="message"></div>
+          </div>
+
+          <div class="workers-card">
+            <h3>Lavoratori</h3>
+            <div id="org-workers-list"></div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Worker Detail Modal -->
+      <section class="org-section worker-detail-section hidden" id="worker-detail-section">
+        <h3>Dettaglio Lavoratore</h3>
+        <button onclick="closeWorkerDetail()" class="btn-secondary">Chiudi</button>
+        <div id="org-worker-detail"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

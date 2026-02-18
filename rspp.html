@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RSPP • Safety by Technology</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- RSPP VIEW -->
+  <div id="rspp-page" class="page">
+    <header class="modern-header rspp-header">
+      <div class="header-content">
+        <div class="header-brand">
+          <img src="images/Logo_ITS_Academy_Udine_25-610x610-removebg-preview.png" alt="RSPP" class="header-logo">
+          <div>
+            <h1>RSPP - Responsabile della Sicurezza</h1>
+            <p>Gestione fattori ambientali</p>
+          </div>
+        </div>
+        <img src="images/LOGO-ITS-ACADEMY-UDINE-1024x233.webp" alt="Smart Automation" class="header-center-logo">
+        <button class="logout-btn" onclick="logout()">Esci</button>
+      </div>
+    </header>
+
+    <main class="modern-container">
+      <section class="form-section rspp-section">
+        <div class="form-header">
+          <h2>Modifica dati ambientali per un giorno</h2>
+          <button type="button" class="toggle-placeholder-btn" onclick="togglePlaceholderMode()">
+            <span class="toggle-icon">📊</span> Demo Data
+          </button>
+        </div>
+        
+        <form id="rspp-form">
+          <div class="form-group">
+            <label>Seleziona la data</label>
+            <input type="date" id="rspp-date" name="rspp-date" required>
+          </div>
+
+          <div class="form-section-title">Fattori Ambientali</div>
+          <div class="slider-grid">
+            <div class="slider-item">
+              <label>Rumore (dB)</label>
+              <div class="input-slider-group">
+                <input type="number" min="40" max="100" step="5" value="70" class="slider-input" data-slider-name="rumore">
+                <input type="range" min="40" max="100" step="5" value="70" name="rumore" class="slider-range">
+                <span class="value">70</span>
+              </div>
+            </div>
+            <div class="slider-item">
+              <label>Illuminazione (lux)</label>
+              <div class="input-slider-group">
+                <input type="number" min="200" max="1000" step="50" value="500" class="slider-input" data-slider-name="luce">
+                <input type="range" min="200" max="1000" step="50" value="500" name="luce" class="slider-range">
+                <span class="value">500</span>
+              </div>
+            </div>
+            <div class="slider-item">
+              <label>Vibrazioni</label>
+              <div class="input-slider-group">
+                <input type="number" min="0" max="10" step="0.5" value="2" class="slider-input" data-slider-name="vibrazioni">
+                <input type="range" min="0" max="10" step="0.5" value="2" name="vibrazioni" class="slider-range">
+                <span class="value">2</span>
+              </div>
+            </div>
+            <div class="slider-item">
+              <label>Spazio operativo</label>
+              <div class="input-slider-group">
+                <input type="number" min="1" max="5" step="0.5" value="3" class="slider-input" data-slider-name="spazio">
+                <input type="range" min="1" max="5" step="0.5" value="3" name="spazio" class="slider-range">
+                <span class="value">3</span>
+              </div>
+            </div>
+          </div>
+
+          <button type="button" class="btn-primary-large rspp-btn-submit" onclick="rsppSubmit()">Salva Modifiche</button>
+        </form>
+
+        <div id="rspp-message" class="message"></div>
+      </section>
+
+      <section class="data-section">
+        <h2>Dati del giorno selezionato</h2>
+        <div id="rspp-data-display"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
