@@ -31,12 +31,12 @@
         <!-- Left: Dashboard Overview -->
         <section class="org-section overview-section">
           <div style="display: flex; justify-content: space-between; align-items: center; gap: 1rem; margin-bottom: 1rem;">
-            <h2 style="margin-bottom: 0;">Panoramica</h2>
+            <h2 style="margin-bottom: 0;">Panoramica Generale</h2>
             <button type="button" class="toggle-placeholder-btn" onclick="togglePlaceholderMode()">
               <span class="toggle-icon">📊</span> Demo Data
             </button>
           </div>
-          
+           
           <div class="stats-grid">
             <div class="stat-card">
               <div class="stat-label">Totale Submission</div>
@@ -53,8 +53,32 @@
           </div>
 
           <div class="chart-card">
-            <h3>Andamento mensile IRO</h3>
+            <h3>Andamento mensile IRO — Generale</h3>
             <canvas id="org-main-chart"></canvas>
+          </div>
+
+          <div class="chart-card" style="margin-top: 1.5rem;">
+            <h3>Andamento mensile IRO — Per Reparto</h3>
+            <canvas id="org-reparto-chart"></canvas>
+          </div>
+
+          <div class="chart-card" style="margin-top: 1.5rem;">
+            <h3>Distribuzione livelli di rischio</h3>
+            <canvas id="org-risk-chart"></canvas>
+          </div>
+
+          <div class="chart-card" style="margin-top: 1.5rem;">
+            <h3>Media IRO per fascia oraria</h3>
+            <canvas id="org-hourly-chart"></canvas>
+          </div>
+
+          <div class="chart-card" style="margin-top: 1.5rem;">
+            <h3>Volumi di rilevazione per reparto</h3>
+            <canvas id="org-reparto-volume-chart"></canvas>
+          </div>
+
+          <!-- Reparto Stats -->
+          <div class="reparto-stats-grid" id="org-reparto-stats" style="margin-top: 1.5rem;">
           </div>
         </section>
 
